@@ -1,5 +1,7 @@
 # Conversational Text-to-SQL System
 
+[![Live Demo](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://text-to-sql-rahul.streamlit.app/)
+
 A schema-aware text-to-SQL pipeline powered by GLM-4.7 via the NVIDIA API. Ask questions in plain English and get SQL-backed answers from a SQLite database — with automatic validation, hallucination prevention, and a benchmark harness.
 
 ## Key Features
