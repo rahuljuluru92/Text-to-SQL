@@ -66,6 +66,41 @@ The Benchmark tab ships with 20 labeled NL→SQL pairs covering aggregates, join
 ]
 ```
 
+
+### Questions that can be asked are :
+
+## Simple (single table)
+How many customers are there?
+List all product names and their prices
+Which products cost more than $50?
+How many orders are in each status?
+What is the most expensive product?
+Which customers are from New York?
+What is the average order total?
+Which product has the most stock?
+## Medium (joins + aggregates)
+Which products are in the Electronics category?
+How many orders does each customer have?
+What is the total revenue from completed orders?
+Show me the order items for order number 5
+How many products are in each category?
+Which customers have never placed an order?
+What is the total quantity sold for each product?
+## Advanced (multi-table + grouping)
+Who are the top 3 customers by total spend on completed orders?
+What is the most popular product by units sold?
+Which category generates the most revenue?
+Show me all orders with more than 2 items
+What is the average number of items per order?
+Which customers placed orders that are still pending or processing?
+What percentage of orders are completed?
+## Edge cases (tests hallucination prevention)
+How many orders were placed in the last 7 days? ← tests date handling with no date column populated
+What is the profit margin on each product? ← unanswerable, no cost data
+Show me all users ← wrong table name — tests if the model corrects itself to customers
+
+
+
 **Metrics reported:**
 - **Exact Match (EM)** — normalized string comparison
 - **Execution Match** — result-set equality (order-insensitive)
