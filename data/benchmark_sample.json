@@ -1,0 +1,22 @@
+[
+  {"question": "How many customers are there?", "gold_sql": "SELECT COUNT(*) FROM customers"},
+  {"question": "List all product names and their prices", "gold_sql": "SELECT name, price FROM products ORDER BY name"},
+  {"question": "What are the names of all categories?", "gold_sql": "SELECT name FROM categories ORDER BY name"},
+  {"question": "Which customers are from New York?", "gold_sql": "SELECT name, email FROM customers WHERE city = 'New York'"},
+  {"question": "What is the total number of orders?", "gold_sql": "SELECT COUNT(*) FROM orders"},
+  {"question": "List all completed orders with their total amount", "gold_sql": "SELECT id, total_amount FROM orders WHERE status = 'completed' ORDER BY id"},
+  {"question": "What are the top 3 most expensive products?", "gold_sql": "SELECT name, price FROM products ORDER BY price DESC LIMIT 3"},
+  {"question": "How many orders does each customer have?", "gold_sql": "SELECT c.name, COUNT(o.id) AS order_count FROM customers c LEFT JOIN orders o ON c.id = o.customer_id GROUP BY c.id, c.name ORDER BY order_count DESC"},
+  {"question": "What is the average order total?", "gold_sql": "SELECT AVG(total_amount) FROM orders"},
+  {"question": "Which products are in the Electronics category?", "gold_sql": "SELECT p.name, p.price FROM products p JOIN categories c ON p.category_id = c.id WHERE c.name = 'Electronics'"},
+  {"question": "List orders that are either pending or processing", "gold_sql": "SELECT id, customer_id, status, total_amount FROM orders WHERE status IN ('pending', 'processing') ORDER BY id"},
+  {"question": "What is the total revenue from completed orders?", "gold_sql": "SELECT SUM(total_amount) FROM orders WHERE status = 'completed'"},
+  {"question": "Which product has the highest stock quantity?", "gold_sql": "SELECT name, stock_quantity FROM products ORDER BY stock_quantity DESC LIMIT 1"},
+  {"question": "How many products are in each category?", "gold_sql": "SELECT c.name, COUNT(p.id) AS product_count FROM categories c LEFT JOIN products p ON p.category_id = c.id GROUP BY c.id, c.name ORDER BY product_count DESC"},
+  {"question": "Show the order items for order number 1", "gold_sql": "SELECT oi.id, p.name, oi.quantity, oi.unit_price FROM order_items oi JOIN products p ON oi.product_id = p.id WHERE oi.order_id = 1"},
+  {"question": "What is the total quantity sold for each product?", "gold_sql": "SELECT p.name, SUM(oi.quantity) AS total_sold FROM products p JOIN order_items oi ON p.id = oi.product_id GROUP BY p.id, p.name ORDER BY total_sold DESC"},
+  {"question": "Which customers have never placed an order?", "gold_sql": "SELECT c.name, c.email FROM customers c LEFT JOIN orders o ON c.id = o.customer_id WHERE o.id IS NULL"},
+  {"question": "What is the most popular product by units sold?", "gold_sql": "SELECT p.name, SUM(oi.quantity) AS units FROM products p JOIN order_items oi ON p.id = oi.product_id GROUP BY p.id, p.name ORDER BY units DESC LIMIT 1"},
+  {"question": "List all customers and their total spend on completed orders", "gold_sql": "SELECT c.name, COALESCE(SUM(o.total_amount), 0) AS total_spend FROM customers c LEFT JOIN orders o ON c.id = o.customer_id AND o.status = 'completed' GROUP BY c.id, c.name ORDER BY total_spend DESC"},
+  {"question": "How many orders are in each status?", "gold_sql": "SELECT status, COUNT(*) AS count FROM orders GROUP BY status ORDER BY count DESC"}
+]
